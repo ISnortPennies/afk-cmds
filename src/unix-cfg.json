@@ -1,0 +1,18 @@
+{
+  "process_info": [
+    {
+      "enabled": true,
+      "path": "/home/gerg/.nix-profile/bin/alacritty",
+      "cwd": "/home/gerg/",
+      "args": [
+        "-e",
+        "ping",
+        "1.1.1.1"
+      ],
+      "show_window": true,
+      "while_afk": true,
+      "kill": true
+    }
+  ],
+  "afk_seconds": 3
+}
