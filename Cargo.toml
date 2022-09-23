@@ -1,14 +1,15 @@
 [package]
-name = "afk_cmds"
+name = "afk-cmds"
 version = "0.1.0"
 edition = "2021"
 build = "build.rs"
 
 [target.'cfg(windows)'.dependencies]
 winapi = { version = "0.3.8", features = ["winuser", "sysinfoapi", "errhandlingapi"] }
-
 [target.'cfg(unix)'.dependencies]
 x11 = {version = "2.20.0" }
+gtk = {version = "0.15.5"}
+libappindicator = {version = "0.7.1"}
 [dependencies]
 serde_json = { version = "1.0.85" }
 serde = {version = "1.0.144", features = ["derive"]}

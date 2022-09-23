@@ -2,10 +2,9 @@
   "process_info": [
     {
       "enabled": true,
-      "path": "/home/gerg/.nix-profile/bin/alacritty",
+      "path": "/run/current-system/sw/bin/st",
       "cwd": "/home/gerg/",
       "args": [
-        "-e",
         "ping",
         "1.1.1.1"
       ],
