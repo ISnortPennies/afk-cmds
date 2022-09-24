@@ -7,7 +7,7 @@ use std::thread;
 pub fn tray_icon(quit_arc:Arc<AtomicBool>, pause_arc:Arc<AtomicBool>) {
     thread::spawn(move || {
     gtk::init().unwrap();
-    let mut indicator = AppIndicator::new("afk-cmds",  "afk-icon"); //temporary logo
+    let mut indicator = AppIndicator::new("afk-cmds",  ""); //temporary logo
     indicator.set_status(AppIndicatorStatus::Active);
     let mut menu = gtk::Menu::new();
     let pause = gtk::CheckMenuItem::with_label("Paused");

@@ -142,13 +142,13 @@ struct Group {
 }
 
 fn main() {
+  wait_for_display();
   let running_arc = Arc::new(AtomicBool::new(true));
   let pause_arc = Arc::new(AtomicBool::new(false));
   let r_clone = running_arc.clone();
   let p_clone = pause_arc.clone();
   tray_icon(r_clone, p_clone);
   let _instance = SingleInstance::new("afk_cmds").unwrap();
-  wait_for_display();
   let mut json = read_config();
 
   //catch ctrl-c as gracefully as possible

@@ -7,15 +7,15 @@
     {
       "type": "lldb",
       "request": "launch",
-      "name": "Debug executable 'afk_cmds'",
+      "name": "Debug executable 'afk-cmds'",
       "cargo": {
         "args": [
-          "build",
-          "--bin=afk_cmds",
-          "--package=afk_cmds"
+          "run",
+          "--bin=afk-cmds",
+          "--package=afk-cmds"
         ],
         "filter": {
-          "name": "afk_cmds",
+          "name": "afk-cmds",
           "kind": "bin"
         }
       },
@@ -25,16 +25,16 @@
     {
       "type": "lldb",
       "request": "launch",
-      "name": "Debug unit tests in executable 'afk_cmds'",
+      "name": "Debug unit tests in executable 'afk-cmds'",
       "cargo": {
         "args": [
           "test",
           "--no-run",
-          "--bin=afk_cmds",
-          "--package=afk_cmds"
+          "--bin=afk-cmds",
+          "--package=afk-cmds"
         ],
         "filter": {
-          "name": "afk_cmds",
+          "name": "afk-cmds",
           "kind": "bin"
         }
       },

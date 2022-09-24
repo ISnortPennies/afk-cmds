@@ -55,20 +55,20 @@ pub fn move_window(pid: u32, num: i32, count: i32) {
     let scr: c_int = XDefaultScreen(dpy);
     let width: c_int = XDisplayWidth(dpy, scr) / count;
     let height: c_int = XDisplayHeight(dpy, scr);
-    let focus = get_by_pid(dpy, pid);
-    if focus == 0 {
+    let window = get_by_pid(dpy, pid);
+    if window == 0 {
       print!("{}","Couldn't move window");
       XCloseDisplay(dpy);
       return;
     }
     let mut wattr: XSetWindowAttributes = std::mem::zeroed();
     wattr.override_redirect = 1;
-    XChangeWindowAttributes(dpy, focus, CWOverrideRedirect, &mut wattr);
-    XUnmapWindow(dpy, focus);
+    XChangeWindowAttributes(dpy, window, CWOverrideRedirect, &mut wattr);
+    XUnmapWindow(dpy, window);
     XFlush(dpy);
-    XMapWindow(dpy, focus);
+    XMapWindow(dpy, window);
     XFlush(dpy);
-    XMoveResizeWindow(dpy, focus, width * num, 0, width as u32, height as u32);
+    XMoveResizeWindow(dpy, window, width * num, 0, width as u32, height as u32);
     XCloseDisplay(dpy);
   }
 }
@@ -77,11 +77,11 @@ pub fn hide_window(pid: u32) {
   let _ = pid;
   unsafe {
     let dpy: *mut Display = XOpenDisplay(std::ptr::null());
-    let focus = get_by_pid(dpy, pid);
+    let window = get_by_pid(dpy, pid);
     let mut wattr: XSetWindowAttributes = std::mem::zeroed();
     wattr.override_redirect = 1;
-    XChangeWindowAttributes(dpy, focus, CWOverrideRedirect, &mut wattr);
-    XUnmapWindow(dpy, focus);
+    XChangeWindowAttributes(dpy, window, CWOverrideRedirect, &mut wattr);
+    XUnmapWindow(dpy, window);
     XFlush(dpy);
     XCloseDisplay(dpy);
   }
