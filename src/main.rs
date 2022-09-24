@@ -147,10 +147,14 @@ fn main() {
   let pause_arc = Arc::new(AtomicBool::new(false));
   let r_clone = running_arc.clone();
   let p_clone = pause_arc.clone();
-  tray_icon(r_clone, p_clone);
-  let _instance = SingleInstance::new("afk_cmds").unwrap();
-  let mut json = read_config();
 
+  let instance = SingleInstance::new("afk-cmds").unwrap();
+  if !instance.is_single() {
+    println!("Another instance is running");
+    exit(1);
+  }
+  let mut json = read_config();
+  tray_icon(r_clone, p_clone);
   //catch ctrl-c as gracefully as possible
   let running_clone = running_arc.clone();
   set_handler(move || {

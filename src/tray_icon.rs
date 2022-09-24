@@ -4,7 +4,7 @@ use gtk::prelude::*;
 use libappindicator::{AppIndicator, AppIndicatorStatus};
 use std::thread;
 
-pub fn tray_icon(quit_arc:Arc<AtomicBool>, pause_arc:Arc<AtomicBool>) {
+pub fn tray_icon(running_arc:Arc<AtomicBool>, pause_arc:Arc<AtomicBool>) {
     thread::spawn(move || {
     gtk::init().unwrap();
     let mut indicator = AppIndicator::new("afk-cmds",  ""); //temporary logo
@@ -18,7 +18,7 @@ pub fn tray_icon(quit_arc:Arc<AtomicBool>, pause_arc:Arc<AtomicBool>) {
 
     let quit = gtk::MenuItem::with_label("Quit");
     quit.connect_activate(move |_| {
-      quit_arc.store(false, Ordering::Relaxed);
+      running_arc.store(false, Ordering::Relaxed);
     });
     menu.append(&quit);
 
